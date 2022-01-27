@@ -36,6 +36,7 @@ namespace AgentieTurism.Pages.Clients
             {
                 return NotFound();
             }
+            ViewData["Genders"] = GetGenders();
             return Page();
         }
 
@@ -45,6 +46,7 @@ namespace AgentieTurism.Pages.Clients
         {
             if (!ModelState.IsValid)
             {
+                ViewData["Genders"] = GetGenders();
                 return Page();
             }
 
@@ -72,6 +74,12 @@ namespace AgentieTurism.Pages.Clients
         private bool ClientExists(int id)
         {
             return _context.Client.Any(e => e.Id == id);
+        }
+        private SelectList GetGenders()
+        {
+            var genders = from Gender g in Enum.GetValues(typeof(Gender))
+                          select new { ID = (int)g, Name = g.ToString() };
+            return new SelectList(genders, "ID", "Name");
         }
     }
 }
