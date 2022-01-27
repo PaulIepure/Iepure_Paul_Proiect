@@ -13,10 +13,28 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.Client)
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.Reservation.Client.FirstName+" "+Model.Reservation.Client.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.Offer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reservation.Offer.Name)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Reservation.NumberOfUnits)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Reservation.NumberOfUnits)
+        </dd>
+        <dt class="col-sm-2">
+            Price
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.Reservation.NumberOfUnits*Model.Reservation.Offer.Price)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Reservation.DateCreated)

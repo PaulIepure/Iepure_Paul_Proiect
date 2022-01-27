@@ -14,19 +14,19 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Reservation.Client" class="control-label"></label>
+                <select asp-for="Reservation.Client.Id" class="form-control" asp-items="ViewBag.Clients"></select>
+                <span asp-validation-for="Reservation.Client" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reservation.Offer" class="control-label"></label>
+                <select asp-for="Reservation.Offer.Id" class="form-control" asp-items="ViewBag.Offers"></select>
+                <span asp-validation-for="Reservation.Offer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Reservation.NumberOfUnits" class="control-label"></label>
                 <input asp-for="Reservation.NumberOfUnits" class="form-control" />
                 <span asp-validation-for="Reservation.NumberOfUnits" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Reservation.DateCreated" class="control-label"></label>
-                <input asp-for="Reservation.DateCreated" class="form-control" />
-                <span asp-validation-for="Reservation.DateCreated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Reservation.DateModify" class="control-label"></label>
-                <input asp-for="Reservation.DateModify" class="form-control" />
-                <span asp-validation-for="Reservation.DateModify" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

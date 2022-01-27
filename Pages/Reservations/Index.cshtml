@@ -14,8 +14,15 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Reservation[0].Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reservation[0].Offer)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Reservation[0].NumberOfUnits)
             </th>
+            <th>Price</th>
             <th>
                 @Html.DisplayNameFor(model => model.Reservation[0].DateCreated)
             </th>
@@ -29,7 +36,16 @@
 @foreach (var item in Model.Reservation) {
         <tr>
             <td>
+                @(item.Client.FirstName+" "+item.Client.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Offer.Name)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.NumberOfUnits)
+            </td>
+            <td>
+                @(item.NumberOfUnits*item.Offer.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateCreated)

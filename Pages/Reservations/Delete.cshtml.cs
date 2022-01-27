@@ -29,7 +29,8 @@ namespace AgentieTurism.Pages.Reservations
                 return NotFound();
             }
 
-            Reservation = await _context.Reservation.FirstOrDefaultAsync(m => m.Id == id);
+            Reservation = await _context.Reservation.Include(r => r.Client)
+                .Include(r => r.Offer).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Reservation == null)
             {

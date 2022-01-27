@@ -23,7 +23,8 @@ namespace AgentieTurism.Pages.Reservations
 
         public async Task OnGetAsync()
         {
-            Reservation = await _context.Reservation.ToListAsync();
+            Reservation = await _context.Reservation.Include(r=>r.Client)
+                .Include(r=>r.Offer).ToListAsync();
         }
     }
 }
