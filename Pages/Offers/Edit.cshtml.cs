@@ -36,6 +36,8 @@ namespace AgentieTurism.Pages.Offers
             {
                 return NotFound();
             }
+            ViewData["TimePeriods"] = GetTimePeriods();
+            ViewData["MealTypes"] = GetMealTypes();
             return Page();
         }
 
@@ -45,6 +47,8 @@ namespace AgentieTurism.Pages.Offers
         {
             if (!ModelState.IsValid)
             {
+                ViewData["TimePeriods"] = GetTimePeriods();
+                ViewData["MealTypes"] = GetMealTypes();
                 return Page();
             }
 
@@ -72,6 +76,18 @@ namespace AgentieTurism.Pages.Offers
         private bool OfferExists(int id)
         {
             return _context.Offer.Any(e => e.Id == id);
+        }
+        private SelectList GetTimePeriods()
+        {
+            var periods = from Period g in Enum.GetValues(typeof(Period))
+                          select new { ID = (int)g, Name = g.ToString() };
+            return new SelectList(periods, "ID", "Name");
+        }
+        private SelectList GetMealTypes()
+        {
+            var mealTypes = from MealType g in Enum.GetValues(typeof(MealType))
+                            select new { ID = (int)g, Name = g.ToString() };
+            return new SelectList(mealTypes, "ID", "Name");
         }
     }
 }
